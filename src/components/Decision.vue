@@ -3,23 +3,25 @@
   <div class="bod">
     <div class="main">
       <div class="headerbar">
-        <div class="header1">
-          <div class="symbolCircle">
-            衝
+        <router-link to="/">
+          <div class="header1">
+            <div class="symbolCircle">
+              衝
+            </div>
+            <div class="title">
+              Müzakere
+            </div>
           </div>
-          <div class="title">
-            Müzakere
-          </div>
-        </div>
+        </router-link>
         <div class="header2">
-          <!-- <div class="h2t">Dirty Dan</div>
+          <div class="h2t">Dirty Dan</div>
           <div class="h2p">
             <img class="pfp" height="45px" width="45px" src="https://i.ytimg.com/vi/dh9NrzHE9tQ/hqdefault.jpg">
-          </div> -->
-          <router-link to="/auth">Sign in</router-link>
+          </div>
+          <!-- <router-link to="/auth">Sign in</router-link> -->
         </div>
       </div>
-      <div class="thesis">{{ $route.params.title.split("+").join(" ") }}</div>
+      <div class="thesis">{{ $route.params.title.concat("?") }}</div>
 
       <div class="option" v-for="(option, idx) in options" v-bind:key="idx">
         <div class="optionTitle"><b>{{ option.typedOption }}</b></div>
@@ -54,9 +56,9 @@
       </div>
 
 
-      <form @submit="addOption(typedOption)">
-        <input v-model="typedOption" placeholder="">
-        <button type="submit">Add new option</button>
+      <form class="add" style="margin-top:10px;" @submit="addOption(typedOption)">
+        <input class="search-bar" v-model="typedOption" placeholder="">
+        <button class="button3" type="submit">Add new option</button>
       </form>
 
       <hr>
@@ -280,13 +282,15 @@
 }
 
 .h2p{
-  width:40px;
+  width:45px;
   height:100%;
   float:left;
 }
 
 .pfp{
   border-radius:50%;
+  height:45px;
+  width:45px;
 }
 
 .title {
@@ -397,6 +401,19 @@
   border : none;
   color : white;
   width: 78px;
+  height: 34px;
+  font-size : 16px;
+  padding-bottom:3px;
+  border-radius:5px;
+  box-sizing:border-box;
+}
+
+.button3{
+  background-color: #B92E48;
+  text-align : center;
+  border : none;
+  color : white;
+  width: 150px;
   height: 34px;
   font-size : 16px;
   padding-bottom:3px;

@@ -23,7 +23,7 @@
     	  	<div class="popt">Popular Discussions</div>
     	  	<div class="popl">
             <ul>
-              <router-link to="/What+javascript+project+should+we+use+for+our+project?!"> <li class="listitem">What javascript framework should we use for our project?!</li> </router-link>
+              <router-link to="/What javascript framework should we use for our project?!"> <li class="listitem">What javascript framework should we use for our project?!</li> </router-link>
               <li class="listitem">What css framework should we use for our project?!</li>
               <li class="listitem">How tall is Sriram?</li>
               <li class="listitem">Where should I buy a house?</li>
@@ -33,31 +33,16 @@
         </div>
         <div class="subbody2">
           <div class="searcht">Search for discussion:</div>
+        
           <div class="searchb">
-            <div class="sbw">
-              <input class="search-bar" type="text">
-            </div>
-            <!-- <div class="submitw">
-              <button type="button" class="submit"><i class="fas fa-search"></i></button>
-            </div> -->
-
-
+            <input class="search-bar" type = "text" v-model = "search" placeholder= "search blogs"/>
           </div>
           <div class="popl2">
-            <input type = "text" v-model = "search" placeholder= "search blogs"/>
-            <div v-for= "(blog,idx) in filterBlogs" v-bind:key = "idx">
-              <h2> {{blog.title}} </h2>
-              </div> 
-
-
-            <!-- <ul>
-              <li class="listitem">What javascript framework should we use for our project?!</li>
-              <li class="listitem">What css framework should we use for our project?!</li>
-              <li class="listitem">How tall is Sriram?</li>
-              <li class="listitem">Where should I buy a house?</li>
-            </ul> -->
+            <ul>
+              <li v-for="(blog,idx) in filterBlogs" v-bind:key = "idx" class="listitem"> {{blog.title}} </li>
+            </ul>
           </div>
-          <div class="searcht">
+          <div class="searcht above">
             Start a discussion:
           </div>
           <div class="searchb">
@@ -117,8 +102,8 @@ export default {
     }
   },
   methods: {
-    addDecision (title) {
-      var title = this.add.split(' ').join('+');
+    addDecision () {
+      var title = this.add.replace(/\?/g,"");
       const createdAt = new Date();
       db.collection('decisions').doc(title).set({ title, createdAt });
       // Clear values
@@ -247,6 +232,7 @@ export default {
   height:500px;
   margin:0 auto;
   font-size:17px;
+  padding-bottom:15px;
 }
 
 .popl2{
@@ -281,18 +267,6 @@ export default {
   height:32px;
 }
 
-.submitw{
-  float:left;
-  background-color:#D7BF83;
-  height:32px;
-  width:46px;
-  margin-left:-10px;
-  padding-left:5px;
-  z-index:3;
-  position:relative;
-  border-radius:6px;
-}
-
 .submit{
   border:none;
   margin-left:7px;
@@ -304,22 +278,20 @@ export default {
   border-radius:6px;
 }
 
-.button
-{
-  margin-left:2px;
-  margin-top:2px;
-  border: none;
-  background-color: #D7BF83;
-  vertical-align:text-top;
-  color: black;
-  width: 22px;
-  height: 22px;
-  font-size: 16px;
-  text-align:center;
-  padding-top:0px;
-  padding-left:11px;
-  border-radius:5px;
-  box-sizing:border-box;
+.submitw{
+  float:left;
+  background-color:#D7BF83;
+  height:32px;
+  width:44px;
+  margin-left:-10px;
+  padding-left:6px;
+  z-index:3;
+  position:relative;
+  border-radius:6px;
+}
+
+.above{
+  margin-top:16px;
 }
 
 .up{
